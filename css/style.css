@@ -1,0 +1,14 @@
+/*Change color of header*/
+body {
+	background-color: black;
+	color: #84aae8;
+	margin-left: 10px;
+}
+
+.jumbotron {
+	/*Set background image for jumbotron, couldn't find a quality enough image*/
+/*	background-image: url("background.jpg");*/
+	background-color: #c43636;
+	color: #e5f97c;
+	text-shadow: black 15px 15px 15px;
+}

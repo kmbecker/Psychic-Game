@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Psychic Game</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Title page of game!! -->
+
+<!-- I was aiming to include the bootstrap styling elements into the reset, but when I added it it kept breaking the game -->
+
+		<div id = "game">
+			 <h1 class="jumbotron text-center">Psychic Game</h1>
+			 <h2 class="page-header text-center">Of which letter am I thinking? Type a letter to begin!</h2>
+		</div>
+
+<!-- Begin script for game code -->
+
+	<script type="text/javascript">
+
+// create game variables and computer options
+
+		var computerChoices = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+		var wins = 0;
+		var losses = 0;
+		var remain = 9;
+		var guesses = []
+		
+// Create random number generator to pick a letter selection at random
+
+		var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+
+	document.onkeyup = function(event) {
+
+			var userGuess = [event.key];
+			guesses[guesses.length] ="" + userGuess;
+		
+
+		if (event.keyCode >= 65 && event.keyCode <= 90){
+
+			if((userGuess) == (computerGuess)){
+					 wins++;
+					 remain = 9;
+					 guesses = [];
+					 computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+			 
+				}
+				else {remain = remain - 1
+					if(remain === 0){
+						losses++;
+						remain = 9;
+					}
+				}
+			
+// Dynamically update page content with results
+
+			var html =
+						"<h1>The Psychic Game</h1><h2> Of which letter am I thinking?</h2>" +
+						"<p>Wins: " + wins + "</p>" +
+						"<p>Losses: " + losses + "</p>" +
+						"<p>Guesses remain: " + remain + "</p>" +
+						"<p>Your Guesses so far: " + guesses + "</p>";
+						
+					document.querySelector("#game").innerHTML = html;
+
+		}
+
+// My attempt at getting the page to retain the original styling
+
+		// 			var html =
+		// 				"<h1 class="jumbotron text-center">The Psychic Game</h1><h2 class="page-header text-center"> Of which letter am I thinking?</h2>" +
+		// 				"<p>Wins: " + wins + "</p>" +
+		// 				"<p>Losses: " + losses + "</p>" +
+		// 				"<p>Guesses remain: " + remain + "</p>" +
+		// 				"<p>Your Guesses so far: " + guesses + "</p>";
+						
+		// 			document.querySelector("#game").innerHTML = html;
+
+		// }
+
+	
+	}
+
+
+	</script>
+</body>
+</html>
